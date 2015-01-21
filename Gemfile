@@ -11,6 +11,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-linkedin'
 gem 'thin'
+gem 'linkedin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
