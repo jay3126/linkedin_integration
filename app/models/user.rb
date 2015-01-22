@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 	end
 
 	def self.fetch_connections
+		# https://github.com/hexgnu/linkedin/blob/master/EXAMPLES.md
 		consumer_key = "78dtq60tch3i8c"
 		consumer_secret = "h6ku1JYIU5KA0UpR"
 		pin = 12694
@@ -34,9 +35,11 @@ class User < ActiveRecord::Base
 		rsecret = request_token.secret
 		request_token.authorize_url
 		pin = 12694
-		client.authorize_from_request(rtoken, rsecret, pin)
-		linkedin_requests = client.authorize_from_request(rtoken, rsecret, pin)
+		# client.authorize_from_request(rtoken, rsecret, pin)
+		# linkedin_requests = client.authorize_from_request(rtoken, rsecret, pin)
 		linkedin_requests = ["aad07521-4220-4083-bda2-0182924969cf", "288e8fe8-ec2a-4cf8-b1a9-b1d497aaf81f"]
+		# authorize from previously fetched access keys
+		client.authorize_from_access(linkedin_requests[0], linkedin_requests[1])
 		client.profile
 		client.connections
 		client.connections.keys
