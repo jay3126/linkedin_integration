@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+	# Include default devise modules. Others available are:
+	# :confirmable, :lockable, :timeoutable and :omniauthable
+	devise :database_authenticatable, :registerable,
+				 :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
 	def self.connect_to_linkedin(auth, signed_in_resource=nil)
 		user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -29,8 +29,13 @@ class User < ActiveRecord::Base
 		consumer_key = "78dtq60tch3i8c"
 		consumer_secret = "h6ku1JYIU5KA0UpR"
 		pin = 12694
-		client = LinkedIn::Client.new(consumer_key, consumer_secret)
-		request_token = client.request_token({})
+
+		linkedin_configuration = {:site => 'https://api.linkedin.com',
+															:authorize_path => '/uas/oauth/authenticate',
+															:request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_fullprofile+r_emailaddress+r_network+r_contactinfo+rw_groups+rw_nus',
+															:access_token_path => '/uas/oauth/accessToken' }
+		client = LinkedIn::Client.new(consumer_key, consumer_secret, linkedin_configuration)
+		request_token = client.request_token({}, :scope => "r_basicprofile r_fullprofile r_emailaddress r_network r_contactinfo rw_groups rw_nus")
 		rtoken = request_token.token
 		rsecret = request_token.secret
 		request_token.authorize_url
