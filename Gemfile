@@ -6,6 +6,7 @@ gem 'rails', '4.0.4'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 
+gem 'eventmachine', '~> 1.0.7'
 gem 'mysql2'
 gem 'devise'
 gem 'omniauth'
@@ -48,4 +49,4 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
