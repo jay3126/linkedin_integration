@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
 
 	def self.fetch_connections
 		# https://github.com/hexgnu/linkedin/blob/master/EXAMPLES.md
-		consumer_key = "78dtq60tch3i8c"
-		consumer_secret = "h6ku1JYIU5KA0UpR"
+		consumer_key = Constants::LINKEDIN_APP_ID
+		consumer_secret = Constants::LINKEDIN_APP_KEY
 		pin = 12694
 
 		linkedin_configuration = {:site => 'https://api.linkedin.com',
