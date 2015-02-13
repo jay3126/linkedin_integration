@@ -66,8 +66,6 @@ class LinkedinController < ApplicationController
 		profile_3 = c.profile(:fields=>["languages","skills","certifications","educations"])
 		
 		# puts "profile_3 = #{profile_3}"
-
-
 		session[:atoken] = nil
 		session[:asecret] = nil
 		redirect_to root_path

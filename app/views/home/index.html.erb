@@ -1,3 +1,6 @@
 <% if user_signed_in? %>
 	<h2>Welcome to LinkedIn Contacts Manager</h2>
+	<div style="text-align: center;padding: 120px;">
+		<%= link_to "Fetch my connections", linkedin_auth_path, class: "btn btn-primary" %>
+	</div>
 <% end %>
