@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: db17aa0145164095b2b21f83f1ef7ccf91b9ea54
+  specs:
+    jquery-datatables-rails (3.1.1)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,6 +71,8 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.3)
+      railties (>= 3.2.16)
     json (1.8.2)
     linkedin (1.0.0)
       hashie (~> 3.0)
@@ -151,7 +163,9 @@ DEPENDENCIES
   devise
   eventmachine (~> 1.0.7)
   jbuilder (~> 1.2)
+  jquery-datatables-rails!
   jquery-rails
+  jquery-ui-rails
   linkedin
   mysql2
   omniauth

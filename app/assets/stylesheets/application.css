@@ -9,5 +9,30 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require dataTables/src/demo_table_jui
  *= require_tree .
  */
+
+.linkedin_si_btn{
+	background-image: url(../assets/Sign-In-Large---Active.png);
+}
+
+.linkedin_header{
+	float: right;
+}
+
+.non_loggedin_linkedin_header{
+	padding: 187px;
+}
+
+.non_loggedin_linkedin_header input{
+	position: relative;
+	top: 16px;
+}
+
+.linkedin_header input{
+	position: relative;
+	top: 16px;
+}
+
+.content_container{min-height: 760px;}

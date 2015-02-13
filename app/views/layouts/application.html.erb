@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>LinkedinIntegrationWithRails</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>:: Linkedin Contacts Manager ::</title>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= csrf_meta_tags %>
+	</head>
 
-<%= yield %>
-	<% if user_signed_in? %>
-		Signed in as <%= current_user.name %>. Not you?
-		<%= link_to "Sign out", destroy_user_session_path,:method => :delete %>
-		<%= link_to "Import Linkedin", "/linkedin/auth" %>
-	<% else %>
-		<%= link_to "Sign up", new_user_registration_path %> or
-		<%= link_to "Sign in", new_user_session_path %>
-		<%= link_to "Sign in with Linkedin",user_omniauth_authorize_path(:linkedin) %>
-	<% end %>
+	<body>
+		<% if user_signed_in? %>
+			<div class="linkedin_header">
+				Signed in as <%= current_user.name %>. Not you?
+				<%= link_to "Sign out", destroy_user_session_path, class: "btn btn-primary",:method => :delete %>
+			</div>
+		<% else %>
+			<div class="non_loggedin_linkedin_header">
+				<%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %> or
+				<%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %> or 
+				<!-- <input type="image" src="/assets/Sign-In-Small---Default.png" onclick="window.location = '/users/auth/linkedin'" /> -->
+				<input type="image" src="/assets/Sign-In-Small---Default.png" onclick="window.location = '/linkedin/auth'" />
+			</div>
+		<% end %>
 
-</body>
+		<div class="content_container">
+			<%= yield %>
+		</div>
+	</body>
 </html>

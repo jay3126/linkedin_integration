@@ -37,40 +37,40 @@ class LinkedinController < ApplicationController
 
 		# fetching basic profile
 		# profile_1 = c.profile(:fields=>["first_name","last_name","headline","public_profile_url","date-of-birth","main_address","phone-numbers","primary-twitter-account","twitter-accounts","location"])
-		profile_1 = c.profile(:fields=>["id","first-name","last-name","maiden-name","formatted-name","phonetic-first-name","phonetic-last-name","formatted-phonetic-name","headline","industry","distance","current-share","num-connections","num-connections-capped","summary","specialties","positions","picture-url","site-standard-profile-request","public-profile-url"])
+		@basic_profile = c.profile(:fields=>["id","first-name","last-name","maiden-name","formatted-name","phonetic-first-name","phonetic-last-name","formatted-phonetic-name","headline","industry","distance","current-share","num-connections","num-connections-capped","summary","specialties","positions","picture-url","site-standard-profile-request","public-profile-url"])
 
-		puts "profile_1 = #{profile_1}"
+		# puts "profile_1 = #{profile_1}"
 
 		#fetching email address.
-		profile_email_address = c.profile(:fields=>["email-address"])
+		@profile_email_address = c.profile(:fields=>["email-address"])
 
 		#fetching full profile.
-		full_profile = c.profile(:fields=>["last-modified-timestamp","proposal-comments","associations","interests","publications","patents","languages","skills","certifications","educations","courses","volunteer","three-current-positions","three-past-positions","num-recommenders","recommendations-received","following","job-bookmarks","suggestions","date-of-birth","member-url-resources","related-profile-views","honors-awards"])
+		@full_profile = c.profile(:fields=>["last-modified-timestamp","proposal-comments","associations","interests","publications","patents","languages","skills","certifications","educations","courses","volunteer","three-current-positions","three-past-positions","num-recommenders","recommendations-received","following","job-bookmarks","suggestions","date-of-birth","member-url-resources","related-profile-views","honors-awards"])
 
 		#fetching contact info
-		contact_info = c.profile(:fields=>["phone-numbers","bound-account-types","im-accounts","main-address","twitter-accounts","primary-twitter-account"])
+		@contact_info = c.profile(:fields=>["phone-numbers","bound-account-types","im-accounts","main-address","twitter-accounts","primary-twitter-account"])
 
 		#fetching connections
-		connections = c.connections
+		@connections = c.connections
 
 		#fetching group memberships
-		grp_memberships = c.profile(:fields=>["group-memberships"])
+		@grp_memberships = c.profile(:fields=>["group-memberships"])
 
 		#fetching network details
-		ntw_details = c.profile(:fields=>["network"])
+		@ntw_details = c.profile(:fields=>["network"])
 
 		profile_2 = c.profile(:fields=>["positions","three_current_positions","three_past_positions","publications","patents"])
 
-		puts "profile_2 = #{profile_2}"
+		# puts "profile_2 = #{profile_2}"
 
 		profile_3 = c.profile(:fields=>["languages","skills","certifications","educations"])
 		
-		puts "profile_3 = #{profile_3}"
+		# puts "profile_3 = #{profile_3}"
 
 
 		session[:atoken] = nil
 		session[:asecret] = nil
-		redirect_to root_path(:imported_from_linkedin=>"success")
+		redirect_to root_path
 	end
 
 end

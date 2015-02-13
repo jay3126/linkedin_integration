@@ -13,6 +13,8 @@ gem 'omniauth'
 gem 'omniauth-linkedin'
 gem 'thin'
 gem 'linkedin'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
@@ -27,6 +29,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
