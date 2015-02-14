@@ -1,0 +1,21 @@
+<% flash.each do |key, value| %>
+	<% if value != true %>
+		<div class="<%= flash_class(key, value) %>" id="flash">
+			<%= value %>
+			<span class="close_flash glyphicon glyphicon-remove-circle fs-20" onclick="$('#flash').fadeOut();"></span>
+		</div>
+	<% end %>
+<% end %>
+<div class="alert alert-success" style="display: none !important" id="ajax_flash">
+	<span></span>
+	<span class="close_flash glyphicon glyphicon-remove-circle fs-20" onclick="$('#flash').fadeOut();"></span>
+</div>
+
+<script type="text/javascript">
+	//fadeout flash messages
+	$('#flash').fadeIn(function() {
+		setTimeout(function() {
+			$('#flash').fadeOut();
+		}, '10000');
+	});
+</script>

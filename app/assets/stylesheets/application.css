@@ -19,10 +19,14 @@
 
 .linkedin_header{
 	float: right;
+	position: relative;
+	bottom: 30px;
 }
 
 .non_loggedin_linkedin_header{
-	padding: 187px;
+	float: right;
+	position: relative;
+	bottom: 52px;
 }
 
 .non_loggedin_linkedin_header input{
@@ -36,3 +40,25 @@
 }
 
 .content_container{min-height: 760px;}
+
+.bdrBtm{
+	border-bottom: 1px solid gray;
+	min-height: 55px;
+}
+
+.close_flash{float:right;cursor:pointer;}
+
+.mgtop5{margin-top: 50px !important;}
+.ftBg_clr{background: #f0f1f1; padding: 10px 0;}
+.norgt_pd{padding-right: 0px !important;}
+.padTop5{padding-top: 5px !important;}
+.copyRgt{display: block; float: left; font-size: 12px;padding-top: 5px; color: #737373;}
+.lpad_no{padding-left: 0px !important;}
+.rpad_no{padding-right: 0px !important;}
+
+ul.footNav{margin: 0; padding: 0;}
+ul.footNav li{float: left;display: block;}
+ul.footNav li a {display: block; padding: 5px 20px; font-size: 12px; color: #3eb5e6;}
+ul.footNav li a{padding: 5px 15px;}
+
+.delConfpop{max-width: 470px; width: 100%;}

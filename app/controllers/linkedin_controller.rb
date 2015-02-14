@@ -71,4 +71,7 @@ class LinkedinController < ApplicationController
 		redirect_to root_path
 	end
 
+	def my_connections
+	end
+
 end

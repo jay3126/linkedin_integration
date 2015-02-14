@@ -1,0 +1,18 @@
+<div class="bdrBtm">
+	<div class="container">
+		<h2>LinkedIn Contacts Manager</h2>
+		<% if user_signed_in? %>
+			<div class="linkedin_header">
+				Signed in as <%= current_user.name %>. Not you?
+				<%= link_to "Sign out", destroy_user_session_path, class: "btn btn-primary",:method => :delete %>
+			</div>
+		<% else %>
+			<div class="non_loggedin_linkedin_header">
+				<!-- <%#= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %> or -->
+				<!-- <%#= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %> or  -->
+				<input type="image" src="/assets/Sign-In-Small---Default.png" onclick="window.location = '/users/auth/linkedin'" />
+				<!-- <input type="image" src="/assets/Sign-In-Small---Default.png" onclick="window.location = '/linkedin/auth'" /> -->
+			</div>
+		<% end %>
+	</div>
+</div>
