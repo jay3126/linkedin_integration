@@ -6,6 +6,7 @@ LinkedinIntegrationWithRails::Application.routes.draw do
 	root 'home#index'
 	get '/linkedin/auth'      => 'linkedin#auth'
 	get '/linkedin/callback'  => 'linkedin#callback'
+	get '/linkedin/my_connections' => 'linkedin#my_connections', as: 'my_connections'
 
 	devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 

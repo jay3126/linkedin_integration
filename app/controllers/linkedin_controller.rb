@@ -68,7 +68,7 @@ class LinkedinController < ApplicationController
 		# puts "profile_3 = #{profile_3}"
 		session[:atoken] = nil
 		session[:asecret] = nil
-		redirect_to root_path
+		redirect_to my_connections_path(data: @profile_email_address)
 	end
 
 	def my_connections
