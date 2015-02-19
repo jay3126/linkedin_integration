@@ -38,8 +38,7 @@ class LinkedinController < ApplicationController
 		# fetching basic profile
 		# profile_1 = c.profile(:fields=>["first_name","last_name","headline","public_profile_url","date-of-birth","main_address","phone-numbers","primary-twitter-account","twitter-accounts","location"])
 		@basic_profile = c.profile(:fields=>["id","first-name","last-name","maiden-name","formatted-name","phonetic-first-name","phonetic-last-name","formatted-phonetic-name","headline","industry","distance","current-share","num-connections","num-connections-capped","summary","specialties","positions","picture-url","site-standard-profile-request","public-profile-url"])
-
-		# puts "profile_1 = #{profile_1}"
+		# data[:basic_profile] = @basic_profile
 
 		#fetching email address.
 		@profile_email_address = c.profile(:fields=>["email-address"])
@@ -52,6 +51,11 @@ class LinkedinController < ApplicationController
 
 		#fetching connections
 		@connections = c.connections
+		@my_connections = @connections["all"]
+		lp = LinkedinProfile.find_or_initialize_by(user_id: current_user.id)
+		lp.update_attributes(count: @connections["_count"], total_count: @connections["total"], start: @connections["_start"])
+
+		LinkedinConnection.insert_connections(@my_connections, lp, current_user)
 
 		#fetching group memberships
 		@grp_memberships = c.profile(:fields=>["group-memberships"])
@@ -60,18 +64,16 @@ class LinkedinController < ApplicationController
 		@ntw_details = c.profile(:fields=>["network"])
 
 		profile_2 = c.profile(:fields=>["positions","three_current_positions","three_past_positions","publications","patents"])
-
-		# puts "profile_2 = #{profile_2}"
-
 		profile_3 = c.profile(:fields=>["languages","skills","certifications","educations"])
 		
-		# puts "profile_3 = #{profile_3}"
 		session[:atoken] = nil
 		session[:asecret] = nil
-		redirect_to my_connections_path(data: @profile_email_address)
+		redirect_to my_connections_path
 	end
 
 	def my_connections
+		@profile_count = LinkedinProfile.find_by(user_id: current_user.id)
+		@my_connections = LinkedinConnection.where(user_id: current_user.id)
 	end
 
 end

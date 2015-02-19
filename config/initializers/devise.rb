@@ -10,7 +10,8 @@ Devise.setup do |config|
 	# Add a new OmniAuth provider. Check the wiki for more information on setting
 	# up on your models and hooks.
 	# config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-	config.omniauth :linkedin, "78dtq60tch3i8c", "h6ku1JYIU5KA0UpR", :scope => 'r_basicprofile r_fullprofile r_emailaddress r_network r_contactinfo rw_groups rw_nus'
+	# config.omniauth :linkedin, "78dtq60tch3i8c", "h6ku1JYIU5KA0UpR", :scope => 'r_basicprofile r_fullprofile r_emailaddress r_network r_contactinfo rw_groups rw_nus'
+	config.omniauth :linkedin, "78dtq60tch3i8c", "h6ku1JYIU5KA0UpR"
 
 	# The default HTTP method used to sign out a resource. Default is :delete.
 	config.sign_out_via = :delete

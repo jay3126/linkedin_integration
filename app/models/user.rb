@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 				 :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+	has_one :linkedin_profile
+	has_many :linkedin_connections
+
 	def self.connect_to_linkedin(auth, signed_in_resource=nil)
 		user = User.where(:provider => auth.provider, :uid => auth.uid).first
 		if user
