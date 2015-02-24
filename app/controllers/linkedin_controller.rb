@@ -78,7 +78,7 @@ class LinkedinController < ApplicationController
 		@connections = {}
 		respond_to do |format|
 			format.html # index.html.erb
-			format.json { render json: LinkedinDatatable.new(view_context, @profile_count, current_user) }
+			format.json { render json: LinkedinDatatable.new(view_context, @profile_count.total_count, current_user) }
 		end
 
 		# if current_user.present?

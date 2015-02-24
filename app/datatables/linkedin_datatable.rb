@@ -8,6 +8,7 @@ class LinkedinDatatable
 		@view = view
 		@TotalRows = total_count
 		@current_user = current_user
+		@count = 0
 	end
 
 	def as_json(options = {})
@@ -21,11 +22,10 @@ class LinkedinDatatable
 
 	private
 	def data
-		count = 0
 		connections.map do |mc|
 			img = "<img src=\"#{mc.profile_pic_url}\">"
 			[
-				count += 1,
+				@count += 1,
 				img,
 				(mc.first_name),
 				(mc.last_name),
