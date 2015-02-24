@@ -21,11 +21,11 @@ class LinkedinDatatable
 
 	private
 	def data
+		count = 0
 		connections.map do |mc|
-			count = 0
 			img = "<img src=\"#{mc.profile_pic_url}\">"
 			[
-				count + 1,
+				count += 1,
 				img,
 				(mc.first_name),
 				(mc.last_name),
