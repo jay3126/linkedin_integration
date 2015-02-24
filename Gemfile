@@ -14,6 +14,7 @@ gem 'omniauth-linkedin'
 gem 'thin'
 gem 'linkedin'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'will_paginate', '~> 3.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'

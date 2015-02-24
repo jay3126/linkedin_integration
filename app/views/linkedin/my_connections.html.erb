@@ -1,35 +1,34 @@
 <h1>My LinkedIn Connections</h1>
 <br />
-<% if @my_connections.present? %>
-	<br />
-	<h2>Total number of connections: <%= @profile_count.total_count %></h2>
-	<br />
-	<!-- <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix dataTables_wrapper"> -->
-	<table class="display conections_data_table" style="width:100%;" cellspacing="0">
-		<thead>
-			<th>S. No.</th>
-			<th>Profile Pic</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Linkedin Id</th>
-			<th>Location Name</th>
-			<th>Industry</th>
-		</thead>
-		<tbody>
-			<% @my_connections.each_with_index do |mc,i| %>
-				<tr>
-					<td><%= i + 1 %></td>
-					<td><img src="<%= mc.profile_pic_url %>" ></td>
-					<!-- <td><img src="#{mc.profile_pic_url}" alt="Smiley face" width="42" height="42"></td> -->
-					<td><%= mc.first_name %></td>
-					<td><%= mc.last_name %></td>
-					<td><%= mc.linkedin_id %></td>
-					<td><%= mc.location_name %></td>
-					<td><%= mc.industry %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-<% else %>
-	<h3>No data to display.</h3>
-<% end %>
+ <!-- <#% if @my_connections.present? %> -->
+<br />
+<h2>Total number of connections: <%= @profile_count.total_count %></h2>
+<br />
+<table class="display conections_data_table" style="width:100%;" cellspacing="0" data-source = "<%= my_connections_url(format: "json") %>">
+	<thead>
+		<th>S. No.</th>
+		<th>Profile Pic</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Linkedin Id</th>
+		<th>Location Name</th>
+		<th>Industry</th>
+	</thead>
+	<tbody>
+		<% @connections.values.each_with_index do |mc,i| %>
+			<tr>
+				<td><%= i + 1 %></td>
+				<td><img src="<%= mc.profile_pic_url %>" ></td>
+				<!-- <td><img src="#{mc.profile_pic_url}" alt="Smiley face" width="42" height="42"></td> -->
+				<td><%= mc.first_name %></td>
+				<td><%= mc.last_name %></td>
+				<td><%= mc.linkedin_id %></td>
+				<td><%= mc.location_name %></td>
+				<td><%= mc.industry %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<!-- 	<#% else %>
+		<h3>No data to display.</h3>
+	<#% end %> -->

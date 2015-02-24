@@ -19,4 +19,10 @@ class LinkedinConnection < ActiveRecord::Base
 			puts e.message
 		end
 	end
+
+	def self.fetch_my_connections(page, per_page, user)
+		profile_count = LinkedinProfile.find_by(user_id: user.id)
+		my_connections = LinkedinConnection.where(user_id: user.id).to_a.paginate(page: page, per_page: per_page)
+		[profile_count, my_connections]
+	end
 end

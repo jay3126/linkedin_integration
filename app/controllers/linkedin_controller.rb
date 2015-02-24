@@ -4,6 +4,8 @@
 
 class LinkedinController < ApplicationController
 
+	before_filter :check_user_session, only: [:my_connections]
+
 	def init_client
 		key = Constants::LINKEDIN_APP_ID
 		secret = Constants::LINKEDIN_APP_KEY
@@ -73,7 +75,19 @@ class LinkedinController < ApplicationController
 
 	def my_connections
 		@profile_count = LinkedinProfile.find_by(user_id: current_user.id)
-		@my_connections = LinkedinConnection.where(user_id: current_user.id)
+		@connections = {}
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: LinkedinDatatable.new(view_context, @profile_count, current_user) }
+		end
+
+		# if current_user.present?
+		# 	@profile_count = LinkedinProfile.find_by(user_id: current_user.id)
+		# 	@my_connections = LinkedinConnection.where(user_id: current_user.id).to_a.paginate(page: params[:page], per_page: params[:per_page])
+		# else
+		# 	@profile_count = ""
+		# 	@my_connections = []
+		# end
 	end
 
 end
