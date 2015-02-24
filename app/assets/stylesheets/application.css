@@ -39,7 +39,9 @@
 	top: 16px;
 }
 
-.content_container{min-height: 760px;}
+.content_container{
+	min-height: 760px;
+}
 
 .bdrBtm{
 	border-bottom: 1px solid gray;
@@ -63,3 +65,25 @@ ul.footNav li a{padding: 5px 15px;}
 
 .delConfpop{max-width: 470px; width: 100%;}
 .dataTables_wrapper{width: 100% !important;}
+
+.conections_data_table tr.odd {
+	background-color: #E2E4FF;
+	border-bottom: 1px solid gray;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+.conections_data_table tr.even {
+	background-color: white;
+	border-bottom: 1px solid gray;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+.conections_data_table tr.even td {
+	border-right: 1px solid gray;
+}
+
+.conections_data_table tr.odd td {
+	border-right: 1px solid gray;
+}
