@@ -87,3 +87,26 @@ ul.footNav li a{padding: 5px 15px;}
 .conections_data_table tr.odd td {
 	border-right: 1px solid gray;
 }
+
+.ajax-loader1{
+	/*background: rgba(0,0,0,.5) url(/assets/spinner_squares_circle.gif) center center no-repeat;*/
+	background: transparent url(/assets/spinner_1.gif) center center no-repeat;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.ajax-loader2{
+	background: transparent url(/assets/spinner_1.gif) center center no-repeat;
+	width: 100%;
+	height: 100%;
+	z-index: 1200;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+}

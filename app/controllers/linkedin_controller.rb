@@ -57,7 +57,13 @@ class LinkedinController < ApplicationController
 		lp = LinkedinProfile.find_or_initialize_by(user_id: current_user.id)
 		lp.update_attributes(count: @connections["_count"], total_count: @connections["total"], start: @connections["_start"])
 
-		LinkedinConnection.insert_connections(@my_connections, lp, current_user)
+		begin
+			th = Thread.new do
+				LinkedinConnection.insert_connections(@my_connections, lp, current_user)
+			end
+		rescue Exception => e
+			puts e.message
+		end
 
 		#fetching group memberships
 		@grp_memberships = c.profile(:fields=>["group-memberships"])
@@ -70,6 +76,8 @@ class LinkedinController < ApplicationController
 		
 		session[:atoken] = nil
 		session[:asecret] = nil
+		# redirect_to my_connections_path(status1: th.alive?, status2: th.status)
+		# http://ruby-doc.org/core-2.1.0/Thread.html
 		redirect_to my_connections_path
 	end
 
