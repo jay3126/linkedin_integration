@@ -7,11 +7,12 @@ class LinkedinController < ApplicationController
 	before_filter :check_user_session, only: [:my_connections]
 
 	def init_client
+		# :request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_fullprofile+r_emailaddress+r_network+r_contactinfo+rw_groups+rw_nus',
 		key = Constants::LINKEDIN_APP_ID
 		secret = Constants::LINKEDIN_APP_KEY
 		linkedin_configuration = { :site => 'https://api.linkedin.com',
 				:authorize_path => '/uas/oauth/authenticate',
-				:request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_fullprofile+r_emailaddress+r_network+r_contactinfo+rw_groups+rw_nus',
+				:request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_emailaddress+rw_company_admin+w_share',
 				:access_token_path => '/uas/oauth/accessToken' }
 		@linkedin_client = LinkedIn::Client.new(key, secret,linkedin_configuration )
 	end
@@ -46,33 +47,33 @@ class LinkedinController < ApplicationController
 		@profile_email_address = c.profile(:fields=>["email-address"])
 
 		#fetching full profile.
-		@full_profile = c.profile(:fields=>["last-modified-timestamp","proposal-comments","associations","interests","publications","patents","languages","skills","certifications","educations","courses","volunteer","three-current-positions","three-past-positions","num-recommenders","recommendations-received","following","job-bookmarks","suggestions","date-of-birth","member-url-resources","related-profile-views","honors-awards"])
+		# @full_profile = c.profile(:fields=>["last-modified-timestamp","proposal-comments","associations","interests","publications","patents","languages","skills","certifications","educations","courses","volunteer","three-current-positions","three-past-positions","num-recommenders","recommendations-received","following","job-bookmarks","suggestions","date-of-birth","member-url-resources","related-profile-views","honors-awards"])
 
 		#fetching contact info
-		@contact_info = c.profile(:fields=>["phone-numbers","bound-account-types","im-accounts","main-address","twitter-accounts","primary-twitter-account"])
+		# @contact_info = c.profile(:fields=>["phone-numbers","bound-account-types","im-accounts","main-address","twitter-accounts","primary-twitter-account"])
 
 		#fetching connections
-		@connections = c.connections
-		@my_connections = @connections["all"]
-		lp = LinkedinProfile.find_or_initialize_by(user_id: current_user.id)
-		lp.update_attributes(count: @connections["_count"], total_count: @connections["total"], start: @connections["_start"])
+		# @connections = c.connections
+		# @my_connections = @connections["all"]
+		# lp = LinkedinProfile.find_or_initialize_by(user_id: current_user.id)
+		# lp.update_attributes(count: @connections["_count"], total_count: @connections["total"], start: @connections["_start"])
 
-		begin
-			th = Thread.new do
-				LinkedinConnection.insert_connections(@my_connections, lp, current_user)
-			end
-		rescue Exception => e
-			puts e.message
-		end
+		# begin
+		# 	th = Thread.new do
+		# 		LinkedinConnection.insert_connections(@my_connections, lp, current_user)
+		# 	end
+		# rescue Exception => e
+		# 	puts e.message
+		# end
 
 		#fetching group memberships
-		@grp_memberships = c.profile(:fields=>["group-memberships"])
+		# @grp_memberships = c.profile(:fields=>["group-memberships"])
 
 		#fetching network details
-		@ntw_details = c.profile(:fields=>["network"])
+		# @ntw_details = c.profile(:fields=>["network"])
 
 		profile_2 = c.profile(:fields=>["positions","three_current_positions","three_past_positions","publications","patents"])
-		profile_3 = c.profile(:fields=>["languages","skills","certifications","educations"])
+		# profile_3 = c.profile(:fields=>["languages","skills","certifications","educations"])
 		
 		session[:atoken] = nil
 		session[:asecret] = nil
@@ -86,7 +87,8 @@ class LinkedinController < ApplicationController
 		@connections = {}
 		respond_to do |format|
 			format.html # index.html.erb
-			format.json { render json: LinkedinDatatable.new(view_context, @profile_count.total_count, current_user) }
+			# format.json { render json: LinkedinDatatable.new(view_context, @profile_count.total_count, current_user) }
+			format.json { render json: LinkedinDatatable.new(view_context, 0, current_user) }
 		end
 
 		# if current_user.present?
